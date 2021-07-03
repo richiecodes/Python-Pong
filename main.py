@@ -65,14 +65,14 @@ def ball_start():
     ball.center = (screen_width / 2, screen_height / 2)
 
     if current_time - score_time < 700:
-        number_three = game_font.render("3", True, light_grey)
-        screen.blit(number_three, (screen_width / 2 - 10, screen_height / 2 + 20))
+        number_three = timer_font.render("3", True, light_grey)
+        screen.blit(number_three, (screen_width / 2 - 20, 300))
     if 700 < current_time - score_time < 1400:
-        number_two = game_font.render("2", True, light_grey)
-        screen.blit(number_two, (screen_width / 2 - 10, screen_height / 2 + 20))
+        number_two = timer_font.render("2", True, light_grey)
+        screen.blit(number_two, (screen_width / 2 - 20, 300))
     if 1400 < current_time - score_time < 2100:
-        number_one = game_font.render("1", True, light_grey)
-        screen.blit(number_one, (screen_width / 2 - 10, screen_height / 2 + 20))
+        number_one = timer_font.render("1", True, light_grey)
+        screen.blit(number_one, (screen_width / 2 - 20, 300))
 
     if current_time - score_time < 2100:
         ball_speed_x, ball_speed_y = 0, 0
@@ -94,7 +94,8 @@ def draw_scores():
 pygame.init()
 clock = pygame.time.Clock()
 FPS = 60
-game_font = pygame.font.SysFont("Arial", 30)
+game_font = pygame.font.SysFont("Arial", 30, True)
+timer_font = pygame.font.SysFont("Arial", 60, True)
 
 # Main Window
 screen_width, screen_height = (1280, 960)
@@ -137,14 +138,14 @@ while True:
             pygame.quit()
             sys.exit()
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                 player_speed += 7
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP or event.key == pygame.K_w:
                 player_speed -= 7
         if event.type == pygame.KEYUP:
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN or event.key == pygame.K_s:
                 player_speed -= 7
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP or event.key == pygame.K_w:
                 player_speed += 7
     # Visuals
     ball_animation()
